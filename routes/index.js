@@ -8,11 +8,8 @@ const proyectoController = require
 
 module.exports = function() {
         //ruta para el hombe
-        router.get('/', proyectoController.proyectoHome);
-        router.get('/nosotros', (req, res) => {
-            res.render('nosotros')
-        })
-    return router;
+        router.get('/', proyectoController.proyectoHome)
+        return router;
 }
 
 
