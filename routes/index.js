@@ -9,6 +9,7 @@ const proyectoController = require
 module.exports = function() {
         //ruta para el hombe
         router.get('/', proyectoController.proyectoHome)
+        router.get('/nuevo-proyecto', proyectoController.formularioProyecto)
         return router;
 }
 
