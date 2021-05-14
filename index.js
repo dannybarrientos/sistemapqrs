@@ -1,12 +1,15 @@
-const express = require('express')
-const routes = require('./routes')
-const path = require('path')
+const express = require('express');
+const routes = require('./routes');
+const path = require('path');
 
 
 //TODO Crear la conexion a la BD
-const db = require('./config/db')
+const db = require('./config/db');
 
-db.authenticate()
+//TODO Importar el Modelo
+require('./models/Proyectos');
+
+db.sync()
 .then(() => console.log('Conectado al servidor'))
 .catch(err => console.log(error))
 
