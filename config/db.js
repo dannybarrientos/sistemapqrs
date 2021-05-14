@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 
-const db = new Sequelize('uptasknode', 'root', 'rootroot', {
-  host: '127.0.0.1',
+const db = new Sequelize('uptasknode', 'root', 'root', {
+    
+  host: 'localhost',
   dialect: 'mysql',
   port: '3306',
   operatorsAliases: false,
