@@ -29,5 +29,8 @@ exports.nuevoProyecto = (req, res) =>{
            nombrePagina: 'Nuevo Proyecto',
            errores
        })
+   } else {
+       //No hay errores
+       //Insertar una Basas de datis
    }
 }
