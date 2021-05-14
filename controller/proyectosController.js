@@ -1,3 +1,5 @@
+const Proyectos = require('../models/Proyectos');
+
 exports.proyectoHome = (req, res) =>{
     res.render('index', {
         nombrePagina: 'Proyectos'
@@ -32,5 +34,8 @@ exports.nuevoProyecto = (req, res) =>{
    } else {
        //No hay errores
        //Insertar una Basas de datis
+       Proyectos.create({ nombre })
+       .then(()=> console.log('Insertado Correctamente'))
+       .catch(error => console.log(error))
    }
 }
