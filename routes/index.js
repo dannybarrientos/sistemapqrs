@@ -1,4 +1,5 @@
 const express = require('express');
+const { render } = require('pug');
 const router = express.Router();
 
 //TODO Importar el controllador
@@ -8,7 +9,9 @@ const proyectoController = require
 module.exports = function() {
         //ruta para el hombe
         router.get('/', proyectoController.proyectoHome);
-        router.get('/nosotros',proyectoController.nosotros);
+        router.get('/nosotros', (req, res) => {
+            res.render('nosotros')
+        })
     return router;
 }
 
