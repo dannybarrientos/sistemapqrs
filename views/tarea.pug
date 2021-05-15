@@ -18,7 +18,7 @@ block contenido
       ul
         if tareas.length
           each tarea in tareas
-            li.tarea(data-tarea=proyecto.url+":"+tarea.id)
+            li.tarea(data-tarea=tarea.id)
               p= tarea.tarea
               .acciones
                 if tarea.estado
