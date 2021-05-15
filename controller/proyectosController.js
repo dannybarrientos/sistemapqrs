@@ -45,3 +45,8 @@ exports.nuevoProyecto = async(req, res) =>{
        res.redirect('/');
    }
 }
+
+exports.proyectoPorUrl = async(req, res) => {
+    res.send('Listo')
+
+}
