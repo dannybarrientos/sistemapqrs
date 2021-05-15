@@ -1,8 +1,12 @@
 const Proyectos = require('../models/Proyectos');
 
-exports.proyectoHome =  (req, res) =>{
+exports.proyectoHome = async (req, res) =>{
+    //TODO mostrar en el vista de la bd, y como consulto para temas de perfor
+    const proyectos = await Proyectos.findAll();
+
     res.render('index', {
-        nombrePagina: 'Proyectos'
+        nombrePagina: 'Proyectos',
+        proyectos
     });
 }
 
