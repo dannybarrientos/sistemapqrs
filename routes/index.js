@@ -14,8 +14,8 @@ module.exports = function() {
         router.get('/', proyectoController.proyectoHome)
         router.get('/nuevo-proyecto', proyectoController.formularioProyecto)
         router.post('/nuevo-proyecto', 
-        body('nombre').not().isEmpty().trim().escape(),
-        proyectoController.nuevoProyecto)
+                body('nombre').not().isEmpty().trim().escape(),
+                proyectoController.nuevoProyecto)
         return router;
 }
 

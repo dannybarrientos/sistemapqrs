@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+const slug = require('slug');
 const db = require('../config/db');
 
 const Proyectos = db.define('proyectos', {
@@ -7,8 +8,20 @@ const Proyectos = db.define('proyectos', {
         primaryKey: true,
         autoIncrement: true
     }, 
-    nombre :  Sequelize.STRING(100),
-    url : Sequelize.STRING(100)
+    nombre :  Sequelize.STRING,
+    url : Sequelize.STRING
+}, { 
+    //TODO Validar Datos antes de ingresar a la bases de datos
+    hooks : {
+          beforeCreate( proyecto ){
+                
+               const url = slug(proyecto.nombre).toLowerCase() ;
+
+
+                proyecto.url = url;
+        }
+    },
+
 });
 
 module.exports = Proyectos ;
