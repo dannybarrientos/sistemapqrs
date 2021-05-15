@@ -31,7 +31,7 @@ exports.nuevoProyecto = async(req, res) =>{
    const { nombre } = req.body;
 
    let errores = [];
-   
+
    if(!nombre) {
        errores.push({'textoError':'Agrega un Nombre al Proyecto'})
    }
@@ -47,8 +47,8 @@ exports.nuevoProyecto = async(req, res) =>{
        //No hay errores
        //Insertar una Basas de datos
 
-       
-       const proyecto = await Proyectos.create({ nombre });
+
+       await Proyectos.create({ nombre });
        res.redirect('/');
    }
 }
@@ -93,6 +93,42 @@ exports.formularioEditar = async(req, res) => {
     //Render a la vista
     res.render('nuevoProyecto', {
         nombrePagina: 'Editar Proyectos',
-        proyectos
+        proyectos,
+        proyecto
     })
+}
+
+exports.actualizarProyecto = async(req, res) =>{
+    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
+    const proyectos = await Proyectos.findAll();
+
+   //Enviar a la consola lo que envia el usuario
+  //console.log(req.body);
+
+  //Validar que tengamos algo en el imput
+  const { nombre } = req.body;
+
+  let errores = [];
+
+  if(!nombre) {
+      errores.push({'textoError':'Agrega un Nombre al Proyecto'})
+  }
+
+  //Si hay errores
+  if(errores.length > 0) {
+      res.render('nuevoProyecto',{
+          nombrePagina: 'Nuevo Proyecto',
+          errores,
+          proyectos
+      })
+  } else {
+      //No hay errores
+      //Insertar una Basas de datos
+      //TODO UPDATE proyectos SETnombre='Nombre Proyecto' WHERE id = 20;
+      await Proyectos.update(
+          { nombre: nombre },
+          { where: { id: req.params.id }}
+          );
+      res.redirect('/');
+  }
 }
