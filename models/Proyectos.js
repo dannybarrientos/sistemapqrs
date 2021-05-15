@@ -8,14 +8,14 @@ const Proyectos = db.define('proyectos', {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    }, 
-    nombre :  Sequelize.STRING,
-    url : Sequelize.STRING
-}, { 
+    },
+    nombre :  Sequelize.STRING(100),
+    url : Sequelize.STRING(100)
+}, {
     //TODO Validar Datos antes de ingresar a la bases de datos
     hooks : {
           beforeCreate( proyecto ){
-                
+
                const url = slug(proyecto.nombre).toLowerCase() ;
 
 
