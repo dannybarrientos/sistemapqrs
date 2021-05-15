@@ -11,19 +11,23 @@ block contenido
       .campo.enviar
         input.boton.nueva-tarea(type="submit" value="Agregar")
 
-    pre= vardump(tareas)
+    //- pre= vardump(tareas)
 
     // TODO -Lista de Pendientes
     .listado-pendientes
       ul
-        each tarea in tareas
-          li.tarea
-            p= tarea.tarea
-            .acciones
+        if tareas.length
+          each tarea in tareas
+            li.tarea
+              p= tarea.tarea
+              .acciones
                 if tarea.estado
                   i.far.fa-check-circle.completo
                 else
                   i.far.fa-check-circle
+                i.fast.fa-trash
+        else
+          p No hay tareas en este proyectos
 
     //- pre= vardump(tareas)
 
