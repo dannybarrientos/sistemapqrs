@@ -55,13 +55,15 @@ exports.nuevoProyecto = async(req, res) =>{
 
 exports.proyectoPorUrl = async (req, res, next) => {
     //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectos = await Proyectos.findAll();
+    const proyectosPromise =  Proyectos.findAll();
     //TODO La consulta seria algo similar a SELECT * FROM proyectos WHERE id = 20
-    const proyecto = await Proyectos.findOne({
+    const proyectoPromise =  Proyectos.findOne({
         where: {
             url : req.params.url
         }
     });
+
+    const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
 
     if(!proyecto) return next();
     //render a la vista
@@ -75,7 +77,19 @@ exports.proyectoPorUrl = async (req, res, next) => {
 
 exports.formularioEditar = async(req, res) => {
     //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectos = await Proyectos.findAll();
+    const proyectosPromise =  Proyectos.findAll();
+
+    const proyectoPromise =  Proyectos.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
+
+
+
+
     //Render a la vista
     res.render('nuevoProyecto', {
         nombrePagina: 'Editar Proyectos',
