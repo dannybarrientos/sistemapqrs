@@ -9,6 +9,9 @@ const { body } = require('express-validator/check')
 const proyectoController = require
         ('../controller/proyectosController');
 
+const tareasController = require
+        ('../controller/tareasController')
+
 module.exports = function() {
         //ruta para el hombe
         router.get('/', proyectoController.proyectoHome)
@@ -30,6 +33,9 @@ module.exports = function() {
 
         //TODO Eliminar Proyecto
         router.delete('/proyectos/:url', proyectoController.eliminarProyecto );
+
+        //TODO Tareas
+        router.post('/proyectos/:url', tareasController.agregarTarea)
 
         return router;
 }
