@@ -6,7 +6,7 @@ exports.proyectoHome = async (req, res) =>{
     const proyectos = await Proyectos.findAll();
     //TODO Pinto
     res.render('index', {
-        nombrePagina: 'Proyectos ' + res.locals.year,
+        nombrePagina: 'Proyectos' ,
         proyectos
     });
 }
