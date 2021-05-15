@@ -12,6 +12,7 @@
   "author": "Danny Barrientos",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "concurrently": "^6.1.0",
     "express": "^4.17.1",
     "express-validator": "^6.11.1",
@@ -19,7 +20,8 @@
     "pug": "^3.0.2",
     "sequelize": "^6.6.2",
     "shortid": "^2.2.16",
-    "slug": "^5.0.1"
+    "slug": "^5.0.1",
+    "sweetalert2": "^11.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.2",

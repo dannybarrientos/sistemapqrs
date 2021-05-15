@@ -1,1 +1,1 @@
-alert('Holasss2')
+import proyectos from './modulos/proyectos';

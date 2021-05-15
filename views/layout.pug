@@ -9,7 +9,7 @@ html(lang="en")
         title #{nombrePagina}
     body
         header.barra
-            h1 UpTask - Administrador de Proyectos
+            h1 Administrador de Proyectos
             a(href="/cerrar-sesion") Cerrar Sesión
 
         main.contenedor
@@ -27,3 +27,4 @@ html(lang="en")
             block contenido
 
             //- pre= vardump(proyectos)
+        script(src="/dist/bundle.js")
