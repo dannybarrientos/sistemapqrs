@@ -36,6 +36,14 @@ app.use((req, res, next) => {
     next();
 });
 
+//TODO Aprendiendo Middleware
+app.use((req, res, next)=>{
+    const fecha = new Date();
+    res.locals.year = fecha.getFullYear();
+    console.log("Yo soy Middleware");
+    next();
+});
+
 
 //TODO Habilitar el body parser para leer los datos del formulario
 //app.use(express.urlencoded())
