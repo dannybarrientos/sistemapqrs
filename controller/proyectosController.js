@@ -1,9 +1,10 @@
 const Proyectos = require('../models/Proyectos');
 
 exports.proyectoHome = async (req, res) =>{
-    //TODO mostrar en el vista de la bd, y como consulto para temas de perfor
+    
+    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
     const proyectos = await Proyectos.findAll();
-
+    //TODO Pinto
     res.render('index', {
         nombrePagina: 'Proyectos',
         proyectos
