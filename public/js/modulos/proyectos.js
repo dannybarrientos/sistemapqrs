@@ -38,8 +38,14 @@ if(btnEliminar) {
                     setTimeout(() => {
                         window.location.href ='/'
                     }, 3000);
-                    return;
-                });
+                })
+                .catch(() => {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Hubo un error',
+                        text:'No se pudo eliminar el proyecto'
+                    })
+                })
 
             }
         })

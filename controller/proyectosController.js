@@ -139,5 +139,8 @@ exports.eliminarProyecto = async (req, res, next) => {
     const {urlProyecto} = req.query;
     //TODO DELETE en MYSQL seria DELETE FROM '' WHERE id = 20
     const resultado = await Proyectos.destroy({where :{ url: urlProyecto}});
+    if(!resultado){
+        return next();
+    }
     res.status(200).send('Proyecto Eliminado Correctamente')
 }
