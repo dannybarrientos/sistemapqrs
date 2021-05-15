@@ -8,8 +8,7 @@ if(btnEliminar) {
     btnEliminar.addEventListener('click', e=> {
         const urlProyecto = e.target.dataset.proyectoUrl;
 
-        console.log(urlProyecto)
-        return;
+        // console.log(urlProyecto)
 
 
         Swal.fire({
@@ -23,6 +22,15 @@ if(btnEliminar) {
             cancelButtonText: 'No, Cancelar'
         }).then((result) =>{
             if(result.value) {
+                //Enviar peticion a Axios
+                //Armaremos la url
+                const url = `${location.origin}/proyectos/${urlProyecto}`
+                axios.delete(url, {params:urlProyecto})
+                .then(function (respuesta){
+                    console.log(respuesta);
+                });
+                return;
+
                 Swal.fire(
                     'Proyecto Eliminado',
                     'El proyecto se ha eliminado ',
