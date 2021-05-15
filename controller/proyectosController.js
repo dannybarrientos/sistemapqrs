@@ -1,4 +1,5 @@
 const Proyectos = require('../models/Proyectos');
+const Tareas = require('../models/Tareas');
 
 exports.proyectoHome = async (req, res) =>{
     
@@ -65,12 +66,24 @@ exports.proyectoPorUrl = async (req, res, next) => {
 
     const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
 
+    //TODO Consultar Tareas del proyecto Actual
+    const tareas = await Tareas.findAll({
+        where: {
+            proyectoId: proyecto.id
+        },
+        include : [
+            { model: Proyectos} //TODO Esta parte es como si fuera un JOIN ya que esto se hacerautomatico que hace Sequilice
+        ]
+    });
+    console.log(tareas);
+
     if(!proyecto) return next();
     //render a la vista
     res.render('tarea', {
         nombrePagina : 'Tarea del Proyecto',
         proyecto,
-        proyectos
+        proyectos,
+        tareas
     })
 
 }
