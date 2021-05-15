@@ -132,3 +132,12 @@ exports.actualizarProyecto = async(req, res) =>{
       res.redirect('/');
   }
 }
+
+exports.eliminarProyecto = async (req, res, next) => {
+    //req query o parmas obtiene el resultado
+    // console.log(req.query);
+    const {urlProyecto} = req.query;
+    //TODO DELETE en MYSQL seria DELETE FROM '' WHERE id = 20
+    const resultado = await Proyectos.destroy({where :{ url: urlProyecto}});
+    res.status(200).send('Proyecto Eliminado Correctamente')
+}
