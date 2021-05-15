@@ -71,9 +71,9 @@ exports.proyectoPorUrl = async (req, res, next) => {
         where: {
             proyectoId: proyecto.id
         },
-        include : [
-            { model: Proyectos} //TODO Esta parte es como si fuera un JOIN ya que esto se hacerautomatico que hace Sequilice
-        ]
+        // include : [
+        //     { model: Proyectos} //TODO Esta parte es como si fuera un JOIN ya que esto se hacerautomatico que hace Sequilice
+        // ]
     });
     console.log(tareas);
 
