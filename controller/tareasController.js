@@ -31,13 +31,13 @@ exports.cambiarEstadoTarea = async (req, res) => {
 
     // cambiar el estado
     let estado = 0;
+    //Estamos haciendo una consulta para completarla y ahora lo quier completar en caso contrario dejar igual 1==0
     if(tarea.estado === estado) {
         estado = 1;
     }
     tarea.estado = estado;
 
     const resultado = await tarea.save();
-    console.log('datos--',resultado);
 
     if(!resultado) return next();
 
