@@ -12,8 +12,6 @@ block contenido
         input.boton.nueva-tarea(type="submit" value="Agregar")
 
     //- pre= vardump(tareas)
-
-    // TODO -Lista de Pendientes
     .listado-pendientes
       ul
         if tareas.length
@@ -25,20 +23,21 @@ block contenido
                   i.far.fa-check-circle.completo
                 else
                   i.far.fa-check-circle
-                i.fast.fa-trash
+                i.fas.fa-trash
         else
-          p No hay tareas en este proyectos
+          p No hay tareas en este proyecto
+
+
 
     //- pre= vardump(tareas)
-
-    //TODO Avence del Proyecto
+    // Avance del Proyecto
     .avance
       h2 Avance del Proyecto
       #barra-avance.barra-avance
         #porcentaje.porcentaje
 
 
-    // TODO Acciones que se pueden realizar
+    // Acciones que se pueden realizar
     .contenedor-acciones
       a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar Proyecto
-      button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar")  Eliminar Proyecto
+      button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Proyecto

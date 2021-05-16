@@ -1,14 +1,13 @@
 extends layout
 
-include mixins/crearProyectos
+include mixins/crearProyecto
 
 block contenido
   .contenido-principal
     h1 #{nombrePagina}
 
     //- pre= vardump(proyecto)
-
-    if errores
+    if errores 
       each error in errores
-        .alerta= error.textoError
-    +crearProyectos(proyecto)
+        .alerta= error.texto
+    +crearProyecto(proyecto)
