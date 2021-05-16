@@ -28,7 +28,7 @@ exports.nuevoProyecto = async(req, res) =>{
     //Enviar a la consola lo que envia el usuario
    //console.log(req.body);
 
-   //Validar que tengamos algo en el imput
+   //TODO Validar que tengamos algo en el imput de Forma manual
    const { nombre } = req.body;
 
    let errores = [];
