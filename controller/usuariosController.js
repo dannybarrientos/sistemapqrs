@@ -1,7 +1,15 @@
 const Usuarios = require('../models/Usuarios')
+
+//TODO Formulario crearCuenta
 exports.formCrearCuenta = (req, res) => {
     res.render('crearCuenta', {
         nombrePagina: 'Crear cuenta en PQRS'
+    });
+}
+//TODO Formulario IniciarSession
+exports.formIniciarSession = (req, res) => {
+    res.render('iniciarSesion', {
+        nombrePagina: 'Iniciar Session en PQRS'
     });
 }
 
