@@ -21,8 +21,13 @@ passport.use(
                 });
                 //TODO EL usuario existe, pasword incorrecto
                 if(!usuario.verificarPassword(password)) {
-
+                    return done(null, false, {
+                        //TODO Variable propia de passport
+                        message: 'El password Incorrecto'
+                    });
                 }
+                //TODO el email existe y el password correcto
+                return done(null,usuario)
 
             } catch (error) {
                 //TODO Ese usuario no existe
@@ -34,4 +39,18 @@ passport.use(
             }
         }
     )
-)
+);
+
+//TODO Serielizar el usuario
+passport.serializeUser((usuario, callback) => {
+    callback(null, usuario)
+});
+
+
+//TODO deserielizar el usuario
+passport.desrializeUser((usuario, callback) => {
+    callback(null, usuario)
+});
+
+//TODO Exportar
+module.exports = passport;

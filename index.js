@@ -4,6 +4,7 @@ const path = require('path');
 const flash = require('connect-flash')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const passport = require('./config/passport')
 
 //Helper con algunas Funciones
 const helpers = require('./helper');
@@ -53,6 +54,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+//TODO Uso Passport  lo que hace arrancar la instancia
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 //TODO pasar vardump en la vistas (//Estaran lo datos de forma local para poder ser accedidos desde cualquier lado)
 app.use((req, res, next) => {

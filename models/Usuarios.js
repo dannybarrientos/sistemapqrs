@@ -45,6 +45,12 @@ const Usuarios = db.define('usuarios', {
 }
 );
 
+//TODO Metodos personalizadps
+
+Usuarios.prototype.verificarPassword =function(pasword) {
+    return bcrypt.compareSync(pasword, this.password);
+}
+
 //TODO Un usuario puede tener muchos proyectos
 Usuarios.hasMany(Proyectos)
 
