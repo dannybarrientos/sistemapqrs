@@ -5,17 +5,24 @@ exports.formCrearCuenta = (req, res) => {
     });
 }
 
-exports.crearCuenta = (req, res) => {
+exports.crearCuenta = async (req, res) => {
     //TODO Leer los datos
-
     const { email, password } = req.body;
 
-    //TODO Crear el usuarios  //Esto es como el Insert
-    Usuarios.create({
+    try {
+        //TODO Crear el usuarios  //Esto es como el Insert
+        await Usuarios.create({
         email,
         password,
-    })
-    .then(() => {
-        res.redirect('/iniciar-sesion')
-    })
+    });
+    res.redirect('/iniciar-sesion')
+
+    } catch (error) {
+        res.render('crearCuenta', {
+            error: error.errors,
+            nombrePagina: 'Crea cuenta en PQER'
+        })
+
+    }
+
 }

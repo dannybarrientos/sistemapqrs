@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
+const flash = require('connect-flash')
 
 //Helper con algunas Funciones
 const helpers = require('./helper');
@@ -23,6 +24,10 @@ db.sync()
 //Crear una app de express
 const app = express();
 
+//TODO Habilitar el body parser para leer los datos del formulario
+//app.use(express.urlencoded())
+app.use(express.urlencoded({extended: true}));
+
 //TODO Donde se carga los archivos estaticos
 app.use(express.static('public'));
 
@@ -32,6 +37,8 @@ app.set('view engine', 'pug' )
 //TODO Añadir la carpeta de las vistass
 app.set('views', path.join(__dirname,'./views'))
 
+//TODO Agregar flash messages
+app.use(flash());
 
 //TODO pasar vardump en la vistas (//Estaran lo datos de forma local para poder ser accedidos desde cualquier lado)
 app.use((req, res, next) => {
@@ -39,9 +46,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//TODO Habilitar el body parser para leer los datos del formulario
-//app.use(express.urlencoded())
-app.use(express.urlencoded({extended: true}));
+
 
 app.use('/', routes())
 
