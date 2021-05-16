@@ -12,6 +12,7 @@ const db = require('./config/db');
 //TODO Importar el Modelo de Bases de datos
 require('./models/Proyectos');
 require('./models/Tareas');
+require('./models/Usuarios');
 
 
 db.sync()
