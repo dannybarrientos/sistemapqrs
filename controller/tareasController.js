@@ -26,6 +26,7 @@ exports.agregarTarea = async(req, res, next) => {
 
 exports.cambiarEstadoTarea = async (req, res) => {
     const { id } = req.params;
+    //TODO Object literal implemetaremos por ser unico ({where: { id : id }}
     const tarea = await Tareas.findOne({where: { id }});
 
     // cambiar el estado
@@ -36,6 +37,7 @@ exports.cambiarEstadoTarea = async (req, res) => {
     tarea.estado = estado;
 
     const resultado = await tarea.save();
+    console.log('datos--',resultado);
 
     if(!resultado) return next();
 
