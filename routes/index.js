@@ -10,6 +10,7 @@ const proyectoController = require('../controller/proyectosController');
 
 const tareasController = require('../controller/tareasController')
 const usuariosController = require('../controller/usuariosController')
+const authController = require('../controller/authController')
 
 module.exports = function() {
         //ruta para el hombe
@@ -48,6 +49,7 @@ module.exports = function() {
 
         //TODO Iniciar Session
         router.get('/iniciar-sesion', usuariosController.formIniciarSession)
+        router.post('/iniciar-sesion',authController.autenticarUsuario);
 
         return router;
 }

@@ -16,7 +16,7 @@ passport.use(
         },
         async (email, password, done) => {
             try {
-                const usuario = await Usuarios.find({
+                const usuario = await Usuarios.findOne({
                     where: {email:email}
                 });
                 //TODO EL usuario existe, pasword incorrecto
@@ -43,13 +43,12 @@ passport.use(
 
 //TODO Serielizar el usuario
 passport.serializeUser((usuario, callback) => {
-    callback(null, usuario)
+    callback(null, usuario);
 });
 
-
-//TODO deserielizar el usuario
-passport.desrializeUser((usuario, callback) => {
-    callback(null, usuario)
+//TODO DeserializeUser el usuario
+passport.deserializeUser((usuario, callback) => {
+    callback(null, usuario);
 });
 
 //TODO Exportar

@@ -8,8 +8,12 @@ exports.formCrearCuenta = (req, res) => {
 }
 //TODO Formulario IniciarSession
 exports.formIniciarSession = (req, res) => {
+    //TODO forma debugger
+    //console.log(res.locals.mensajes);
+    const {error} = res.locals.mensajes
     res.render('iniciarSesion', {
-        nombrePagina: 'Iniciar Session en PQRS'
+        nombrePagina: 'Iniciar Session en PQRS',
+        error : error
     });
 }
 
@@ -32,7 +36,6 @@ exports.crearCuenta = async (req, res) => {
             nombrePagina: 'Crea cuenta en PQER',
             email,
             password,
-            
         })
 
     }
