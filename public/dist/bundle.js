@@ -322,7 +322,18 @@ eval("var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modulos_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modulos/proyectos */ \"./public/js/modulos/proyectos.js\");\n/* harmony import */ var _modulos_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modulos/tareas */ \"./public/js/modulos/tareas.js\");\n\n\n\n//# sourceURL=webpack://uptasknodejs/./public/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modulos_proyectos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modulos/proyectos */ \"./public/js/modulos/proyectos.js\");\n/* harmony import */ var _modulos_tareas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modulos/tareas */ \"./public/js/modulos/tareas.js\");\n/* harmony import */ var _funciones_avances__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./funciones/avances */ \"./public/js/funciones/avances.js\");\n\n\n\ndocument.addEventListener('DOMContentLoaded', function () {\n  (0,_funciones_avances__WEBPACK_IMPORTED_MODULE_2__.actualizarAvance)();\n});\n\n//# sourceURL=webpack://uptasknodejs/./public/js/app.js?");
+
+/***/ }),
+
+/***/ "./public/js/funciones/avances.js":
+/*!****************************************!*\
+  !*** ./public/js/funciones/avances.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"actualizarAvance\": () => (/* binding */ actualizarAvance)\n/* harmony export */ });\nvar actualizarAvance = function actualizarAvance() {\n  //TODO Seleccionar las tareas existente\n  var tareas = document.querySelector('li.tarea');\n\n  if (tareas.length) {\n    //TODO Seleccionar las tareas completadas\n    var tareasCompletas = document.querySelectorAll('i.completo'); //TODO Calcular el avance\n\n    var avance = Math.round(tareasCompletas.length / tareas.length * 100); //TODO Mostrar el avance\n\n    var porcentaje = document.querySelector('#porcentaje');\n    porcentaje.style.width = avance + '%';\n  }\n};\n\n//# sourceURL=webpack://uptasknodejs/./public/js/funciones/avances.js?");
 
 /***/ }),
 

@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "christian-kohler.path-intellisense",
+        "ritwickdey.liveserver",
+        "pkief.material-icon-theme",
+        "shan.code-settings-sync",
+        "formulahendry.terminal",
+        "wayou.vscode-todo-highlight",
+        "gruntfuggly.todo-tree",
+        "shardulm94.trailing-spaces",
+        "vscode-icons-team.vscode-icons"
+    ]
+}
