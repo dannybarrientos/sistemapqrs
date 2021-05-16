@@ -37,6 +37,9 @@ module.exports = function() {
         //TODO Tareas
         router.post('/proyectos/:url', tareasController.agregarTarea)
 
+        //TODO Actualizar Tarea  //Patch cambian un parte //Update cambia todo
+        router.patch('/tareas/:id', tareasController.cambiarEstadoTarea)
+
         return router;
 }
 

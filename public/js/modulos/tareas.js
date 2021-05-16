@@ -1,11 +1,22 @@
+import axios from "axios";
+
 const tareas = document.querySelector('.listado-pendientes');
 
 if(tareas) {
+
     tareas.addEventListener('click', e => {
-        if(e.target.classList.contains('fa-check-circle')){
+        if(e.target.classList.contains('fa-check-circle')) {
             const icono = e.target
             const idTarea = icono.parentElement.parentElement.dataset.tarea;
-            console.log(idTarea);
+
+            //TODO Request hacia /tarea/:id
+            const url = `${location.origin}/tareas/${idTarea}`;
+
+            axios.patch(url, { idTarea })
+            .then(function(respuesta){
+                    console.log(respuesta);
+                    icono.classList.toggle('completo')
+                })
         }
     });
 }
