@@ -6,11 +6,10 @@ const router = express.Router();
 const { body } = require('express-validator/check')
 
 //TODO Importar el controllador
-const proyectoController = require
-        ('../controller/proyectosController');
+const proyectoController = require('../controller/proyectosController');
 
-const tareasController = require
-        ('../controller/tareasController')
+const tareasController = require('../controller/tareasController')
+const usuariosController = require('../controller/usuariosController')
 
 module.exports = function() {
         //ruta para el hombe
@@ -42,6 +41,9 @@ module.exports = function() {
 
         //TODO Eliminar Tarea
         router.delete('/tareas/:id', tareasController.eliminarTarea)
+
+        //TODO Crear una Cuenta
+        router.get('/crear-cuenta',usuariosController.formCrearCuenta)
 
         return router;
 }
