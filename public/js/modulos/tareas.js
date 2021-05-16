@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { actualizarAvance } from '../funciones/avances'
 
 const tareas = document.querySelector('.listado-pendientes');
 
@@ -15,9 +16,12 @@ if(tareas) {
 
             axios.patch(url, { idTarea })
             .then(function(respuesta){
+                if(respuesta.status ===200) {
                     console.log(respuesta);
                     icono.classList.toggle('completo')
-                })
+                    actualizarAvance()
+                }
+            })
         }
 
         if(e.target.classList.contains('fa-trash')) {
@@ -51,6 +55,7 @@ if(tareas) {
                                          respuesta.dataset,
                                          'success'
                                     )
+                                    actualizarAvance()
                                 }
 
                             });
