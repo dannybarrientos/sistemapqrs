@@ -6,7 +6,7 @@ exports.formCrearCuenta = (req, res) => {
 }
 
 exports.crearCuenta = async (req, res) => {
-    //TODO Leer los datos
+    //TODO Leer los datos VW
     const { email, password } = req.body;
 
     try {
@@ -21,7 +21,10 @@ exports.crearCuenta = async (req, res) => {
         req.flash('error', error.errors.map(error => error.message));
         res.render('crearCuenta', {
             mensajes: req.flash(),
-            nombrePagina: 'Crea cuenta en PQER'
+            nombrePagina: 'Crea cuenta en PQER',
+            email,
+            password,
+            
         })
 
     }
