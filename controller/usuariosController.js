@@ -19,7 +19,7 @@ exports.crearCuenta = async (req, res) => {
 
     } catch (error) {
         res.render('crearCuenta', {
-            error: error.errors,
+            errores: error.errors,
             nombrePagina: 'Crea cuenta en PQER'
         })
 
