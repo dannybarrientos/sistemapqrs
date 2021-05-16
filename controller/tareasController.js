@@ -24,7 +24,7 @@ exports.agregarTarea = async(req, res, next) => {
 
 }
 
-exports.cambiarEstadoTarea = async (req, res) => {
+exports.cambiarEstadoTarea = async(req, res) => {
     const { id } = req.params;
     //TODO Object literal implemetaremos por ser unico ({where: { id : id }}
     const tarea = await Tareas.findOne({where: { id }});
@@ -42,4 +42,17 @@ exports.cambiarEstadoTarea = async (req, res) => {
     if(!resultado) return next();
 
     res.status(200).send('Actualizado');
+}
+
+exports.eliminarTarea = async(req, res, next) => {
+    //req query o parms obtiene el resultado params con el id query puedo asignarle un nombr a la variable
+    // console.log(req.query);
+    const { id } = req.params;
+    //TODO DELETE en MYSQL seria DELETE FROM '' WHERE id = 20
+    const resultado = await Tareas.destroy({where :{ id }});
+    if(!resultado){
+        return next();
+    }
+    res.status(200).send('Tarea Eliminada Correctamente')
+
 }

@@ -40,6 +40,9 @@ module.exports = function() {
         //TODO Actualizar Tarea  //Patch cambian un parte //Update cambia todo
         router.patch('/tareas/:id', tareasController.cambiarEstadoTarea)
 
+        //TODO Eliminar Tarea
+        router.delete('/tareas/:id', tareasController.eliminarTarea)
+
         return router;
 }
 
