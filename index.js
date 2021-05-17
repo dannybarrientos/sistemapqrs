@@ -61,9 +61,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //TODO pasar vardump en la vistas (//Estaran lo datos de forma local para poder ser accedidos desde cualquier lado)
+//TODO Este es un midleware
 app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;
     res.locals.mensajes = req.flash();
+    res.locals.usuarios = {...req.user} || null;
+    console.log(res.locals.usuarios);
     next();
 });
 
