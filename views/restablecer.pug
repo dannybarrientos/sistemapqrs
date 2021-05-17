@@ -4,8 +4,17 @@ html(lang="en")
         include partials/header
     body.login
         .contenedor-formulario
+
             h1= nombrePagina
             p Agrega tu e-email para restablecer la contraseña
+
+            if locals.mensajes
+                .alertas
+                    each categoria in Object.keys(locals.mensajes)
+                        each error in mensajes[categoria]
+                            .alerta(class=`${categoria}`)
+                                p= error
+
             form.caja-login(method="POST" action="/restablecer")
                 .campo
                     label(for="email") E-mail
