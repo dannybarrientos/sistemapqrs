@@ -13,38 +13,67 @@ const usuariosController = require('../controller/usuariosController')
 const authController = require('../controller/authController')
 
 module.exports = function() {
-        //ruta para el hombe
-        router.get('/', proyectoController.proyectoHome)
-        router.get('/nuevo-proyecto', proyectoController.formularioProyecto)
+        //ruta para el Home
+        router.get('/',
+                authController.usuarioAutenticado,
+                proyectoController.proyectoHome
+        );
+
+        router.get('/nuevo-proyecto',
+                authController.usuarioAutenticado,
+                proyectoController.formularioProyecto
+
+        );
         router.post('/nuevo-proyecto',
+                authController.usuarioAutenticado,
                 body('nombre').not().isEmpty().trim().escape(),
                 proyectoController.nuevoProyecto
         );
 
         //TODO Listar Proyectos
-        router.get('/proyectos/:url', proyectoController.proyectoPorUrl);
+        router.get('/proyectos/:url',
+                authController.usuarioAutenticado,
+                 proyectoController.proyectoPorUrl
+        );
 
         //TODO Actualizar el Proyecto
-        router.get('/proyecto/editar/:id', proyectoController.formularioEditar)
+        router.get('/proyecto/editar/:id',
+                authController.usuarioAutenticado,
+                proyectoController.formularioEditar
+        );
+
         router.post('/nuevo-proyecto/:id',
+                authController.usuarioAutenticado,
                 body('nombre').not().isEmpty().trim().escape(),
                 proyectoController.actualizarProyecto
         );
 
         //TODO Eliminar Proyecto
-        router.delete('/proyectos/:url', proyectoController.eliminarProyecto );
+        router.delete('/proyectos/:url',
+                authController.usuarioAutenticado,
+                proyectoController.eliminarProyecto
+        );
 
         //TODO Tareas
-        router.post('/proyectos/:url', tareasController.agregarTarea)
+        router.post('/proyectos/:url',
+                authController.usuarioAutenticado,
+                tareasController.agregarTarea
+        );
 
         //TODO Actualizar Tarea  //Patch cambian un parte //Update cambia todo
-        router.patch('/tareas/:id', tareasController.cambiarEstadoTarea)
+        router.patch('/tareas/:id',
+                authController.usuarioAutenticado,
+                tareasController.cambiarEstadoTarea
+        );
 
         //TODO Eliminar Tarea
-        router.delete('/tareas/:id', tareasController.eliminarTarea)
+        router.delete('/tareas/:id',
+                authController.usuarioAutenticado,
+                tareasController.eliminarTarea
+        );
 
         //TODO Crear una Cuenta
-        router.get('/crear-cuenta', usuariosController.formCrearCuenta)
+        router.get('/crear-cuenta', usuariosController.formCrearCuenta);
         router.post('/crear-cuenta', usuariosController.crearCuenta);
 
         //TODO Iniciar Session
