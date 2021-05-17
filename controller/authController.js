@@ -1,6 +1,7 @@
 const passport = require('passport');
 const Usuarios = require('../models/Usuarios');
-const usuario = require('../models/Usuarios')
+
+const crypto = require('crypto');
 
 //TODO Utilizando la estrategia local, puedo agregar facebook o google por ahora local
 exports.autenticarUsuario = passport.authenticate('local', {
@@ -37,10 +38,31 @@ exports.enviarToken = async(req, res) => {
 
     //Si el usuario no existe
     if(!usuario) {
-        req.flash('Error', 'No existe esa cuenta')
-        res.render('restablecer', {
-            nombrePagina: 'Restablecer tu constraseña',
-            mensajes: req.flash()
-        })
+        req.flash('error', 'No existe esa cuenta')
+        res.redirect('/restablecer');
     }
+    //Usuario existes
+    //TODO token
+    usuario.token = crypto.randomBytes(20).toString('hex');
+    //TODO Expiracion
+    usuario.expiracion = Date.now() + 3600000
+    //Guardarlos en la basde de datos
+    await usuario.save();
+
+    //Url de reset
+    const resetUrl = `http://${req.headers.host}/restablecer/${usuario.token}`;
+    console.log(resetUrl);
+}
+
+exports.resetPassword = async(req, res) => {
+const usuario = await Usuarios.findOne({
+    where:{
+        token: req.params.token,
+    }
+  })
+  //TODO Si no encuetra el usuario
+  if(!usuario){
+      req.flash('error','No valido')
+      res.redirect('/restablecer');
+  }
 }
