@@ -13,13 +13,17 @@ let transport = nodemailer.createTransport({
       pass: emailConfig.password
     }
   });
-
+//TODO Generar HTML
+const generarHTML = () => {
+    const html = pug.renderFile(`${__dirname}/../views/emails/reestablecer-password.pug`);
+    return juice(html)
+}
   let mailOptions = {
     from: '"PQRS👻" <noReaply@pqrs.com>', // sender address
     to: "correo@correo.com", // list of receivers
     subject: "Password reset", // Subject line
     text: "Hola", // plain text body
-    html: "<b>Hola</b>", // html body
+    html: generarHTML(), // html body
 };
 
 transport.sendMail(mailOptions)
