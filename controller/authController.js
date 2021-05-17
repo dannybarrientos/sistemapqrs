@@ -3,7 +3,8 @@ const Usuarios = require('../models/Usuarios');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const crypto = require('crypto');
-const bcrypt =require('bcrypt-nodejs')
+const bcrypt = require('bcrypt-nodejs')
+const enviarEmail = require('../headlers/email')
 
 //TODO Utilizando la estrategia local, puedo agregar facebook o google por ahora local
 exports.autenticarUsuario = passport.authenticate('local', {
@@ -43,17 +44,26 @@ exports.enviarToken = async(req, res) => {
         req.flash('error', 'No existe esa cuenta')
         res.redirect('/restablecer');
     }
-    //Usuario existes
+    //TODO Usuario existes
     //TODO token
     usuario.token = crypto.randomBytes(20).toString('hex');
     //TODO Expiracion
     usuario.expiracion = Date.now() + 3600000
-    //Guardarlos en la basde de datos
+    //TODO Guardarlos en la basde de datos
     await usuario.save();
 
-    //Url de reset
+    //TODO Url de reset
     const resetUrl = `http://${req.headers.host}/restablecer/${usuario.token}`;
-    console.log(resetUrl);
+
+    //TODO Enviar el correo con el tocken
+
+    await enviarEmail.enviar({
+        usuario: usuario,
+        subject: 'Password Reset',
+        resetUrl,
+        archivo :'reestablecer-password'
+    })
+
 }
 
 exports.validarToken = async(req, res) => {
