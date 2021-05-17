@@ -52,7 +52,7 @@ if(tareas) {
                                     //TODO Opcional una alerta
                                     Swal.fire(
                                          'Tarea Eliminada',
-                                         respuesta.dataset,
+                                          respuesta.data,
                                          'success'
                                     )
                                     actualizarAvance()

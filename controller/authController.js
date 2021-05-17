@@ -18,3 +18,11 @@ exports.usuarioAutenticado = (req, res, next) => {
     return res.redirect('/iniciar-sesion');
 
 }
+
+//TODO Funciona para cerrar Sesison
+exports.cerrarSesion = (req, res) =>{
+    req.session.destroy(() => {
+        res.redirect('iniciar-sesion'); //Al cerrrar session nos lleva al login
+    });
+
+}

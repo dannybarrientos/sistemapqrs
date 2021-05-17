@@ -80,6 +80,9 @@ module.exports = function() {
         router.get('/iniciar-sesion', usuariosController.formIniciarSession)
         router.post('/iniciar-sesion',authController.autenticarUsuario);
 
+        //TODO Cerrar Session
+        router.get('/cerrar-sesion', authController.cerrarSesion);
+
         return router;
 }
 
