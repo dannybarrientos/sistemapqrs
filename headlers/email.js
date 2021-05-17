@@ -25,5 +25,3 @@ const generarHTML = () => {
     text: "Hola", // plain text body
     html: generarHTML(), // html body
 };
-
-transport.sendMail(mailOptions)
