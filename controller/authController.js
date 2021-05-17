@@ -2,8 +2,8 @@ const passport = require('passport');
 const Usuarios = require('../models/Usuarios');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-
 const crypto = require('crypto');
+const bcrypt =require('bcrypt-nodejs')
 
 //TODO Utilizando la estrategia local, puedo agregar facebook o google por ahora local
 exports.autenticarUsuario = passport.authenticate('local', {
@@ -93,4 +93,13 @@ exports.actualizarPassword = async(req, res) => {
         req.flash('error', 'No valido');
         res.redirect('/restablecer');
     }
+    //TODO hashear el password
+    usuario.password =bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+    usuario.token = null;
+    usuario.expiracion = null;
+
+    //TODO Guardamos el nuevo password
+    await usuario.save();
+    req.flash('correcto', 'Tu password se ha modificado correctamente')
+    res.redirect('/iniciar-sesion')
 }
