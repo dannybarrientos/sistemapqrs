@@ -1,11 +1,12 @@
 const Proyectos = require('../models/Proyectos');
 const Tareas = require('../models/Tareas');
 
-exports.proyectoHome = async (req, res) =>{
-    
-    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectos = await Proyectos.findAll();
-    //TODO Pinto
+exports.proyectoHome = async (req, res) => {
+    //console.log(res.locals.usuarios.id);
+
+    const usuarioId = res.locals.usuarios.id
+    const proyectos = await Proyectos.findAll( {where:{ usuarioId: usuarioId}});
+
     res.render('index', {
         nombrePagina: 'Proyectos' ,
         proyectos
@@ -14,7 +15,8 @@ exports.proyectoHome = async (req, res) =>{
 
 exports.formularioProyecto = async(req, res) =>{
      //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-     const proyectos = await Proyectos.findAll();
+    const usuarioId = res.locals.usuarios.id
+    const proyectos = await Proyectos.findAll( {where:{ usuarioId: usuarioId}});
     res.render('nuevoProyecto', {
         nombrePagina: 'Nuevo Proyecto',
         proyectos
@@ -23,7 +25,8 @@ exports.formularioProyecto = async(req, res) =>{
 
 exports.nuevoProyecto = async(req, res) =>{
      //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-     const proyectos = await Proyectos.findAll();
+     const usuarioId = res.locals.usuarios.id
+     const proyectos = await Proyectos.findAll( {where:{ usuarioId: usuarioId}});
 
     //Enviar a la consola lo que envia el usuario
    //console.log(req.body);
@@ -54,12 +57,13 @@ exports.nuevoProyecto = async(req, res) =>{
 }
 
 exports.proyectoPorUrl = async (req, res, next) => {
-    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectosPromise =  Proyectos.findAll();
-    //TODO La consulta seria algo similar a SELECT * FROM proyectos WHERE id = 20
+    const usuarioId = res.locals.usuarios.id
+    const proyectosPromise = Proyectos.findAll( {where:{ usuarioId: usuarioId}});
+    //TODO La consulta findOne seria algo similar a SELECT * FROM proyectos WHERE id = 20
     const proyectoPromise =  Proyectos.findOne({
         where: {
-            url : req.params.url
+            url : req.params.url,
+            usuarioId: usuarioId
         }
     });
 
@@ -88,12 +92,13 @@ exports.proyectoPorUrl = async (req, res, next) => {
 }
 
 exports.formularioEditar = async(req, res) => {
-    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectosPromise =  Proyectos.findAll();
+    const usuarioId = res.locals.usuarios.id
+    const proyectosPromise = Proyectos.findAll( {where:{ usuarioId: usuarioId}});
 
     const proyectoPromise =  Proyectos.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            usuarioId: usuarioId
         }
     });
 
@@ -111,8 +116,9 @@ exports.formularioEditar = async(req, res) => {
 }
 
 exports.actualizarProyecto = async(req, res) =>{
-    //TODO mostrar en el vista de la bd, y como consulto para temas de performance
-    const proyectos = await Proyectos.findAll();
+
+    const usuarioId = res.locals.usuarios.id
+    const proyectos = await Proyectos.findAll( {where:{ usuarioId: usuarioId}});
 
    //Enviar a la consola lo que envia el usuario
   //console.log(req.body);
