@@ -18,7 +18,7 @@ require('./models/Proyectos');
 require('./models/Tareas');
 require('./models/Usuarios');
 
-
+//TODO Conectar al servidor
 db.sync()
 .then(() => console.log('Conectado al servidor'))
 .catch(err => console.log(error))

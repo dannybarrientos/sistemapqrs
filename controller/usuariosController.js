@@ -60,9 +60,35 @@ exports.crearCuenta = async (req, res) => {
     }
 
 }
+
+//TODO Restablecer Password
 exports.formRestablecerPassword = (req, res) => {
     res.render('restablecer', {
         nombrePagina:'Reestablecer tu contraseña'
     });
+
+}
+
+//TODO Cambia el etado de una cuenta
+exports.confirmarCuenta = async (req, res) => {
+    const usuario = await Usuarios.findOne({
+        where: {
+            email: req.params.correo
+        }
+    });
+
+    //TODO Si no existe el usuario
+    console.log("Este usuario existe", usuario);
+    if(!usuario) {
+        req.flash('error', 'No valido');
+        res.redirect('/crear-cuenta');
+    }
+
+    //TODO Me guarda una copia de usuario ya que tengo la instancia de Usuario, sin necesidad de lowey
+    usuario.activo = 1
+    await usuario.save();
+
+    req.flash('correcto', 'Cuenta activada correctamente');
+    res.redirect('/iniciar-sesion');
 
 }
