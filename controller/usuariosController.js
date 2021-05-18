@@ -1,4 +1,5 @@
-const Usuarios = require('../models/Usuarios')
+const Usuarios = require('../models/Usuarios');
+const enviarEmail = require('../headlers/email')
 
 //TODO Formulario crearCuenta
 exports.formCrearCuenta = (req, res) => {
@@ -27,6 +28,24 @@ exports.crearCuenta = async (req, res) => {
         email,
         password,
     });
+    //TODO Crear una URL de confirmar
+    const confirmarUrl = `http://${req.headers.host}/confirmar/${email}`;
+
+    //TODO Crear el objeto de usuario
+    const usuario = {
+        email
+    }
+
+
+    //TODO Enviar el correo con el token
+    await enviarEmail.enviar({
+        usuario: usuario,
+        subject: 'Confirma tu cuenta PQRS',
+        confirmarUrl,
+        archivo :'confirmar-cuenta'
+    });
+    //TODO Redirigir al usuario
+    req.flash('correcto', 'Enviamos un correo, confirma tu cuenta')
     res.redirect('/iniciar-sesion')
 
     } catch (error) {

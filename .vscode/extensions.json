@@ -8,6 +8,12 @@
         "wayou.vscode-todo-highlight",
         "gruntfuggly.todo-tree",
         "shardulm94.trailing-spaces",
-        "vscode-icons-team.vscode-icons"
+        "vscode-icons-team.vscode-icons",
+        "esbenp.prettier-vscode",
+        "gruntfuggly.activitusbar",
+        "coenraads.bracket-pair-colorizer",
+        "coenraads.bracket-pair-colorizer-2",
+        "formulahendry.auto-close-tag",
+        "naumovs.color-highlight"
     ]
 }

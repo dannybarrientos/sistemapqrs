@@ -36,6 +36,10 @@ const Usuarios = db.define('usuarios', {
         }
 
     },
+    activo: {
+        type:Sequelize.STRING,
+        defaultValue : 0
+    },
     token:Sequelize.STRING,
     expiracion: Sequelize.DATE
 },{
