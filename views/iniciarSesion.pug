@@ -6,9 +6,6 @@ html(lang="en")
         .contenedor-formulario
             h1 Inicia Session en PQRS
 
-            if error
-                    p.alertar.error= error
-
             if locals.mensajes
                 .alertas
                     each categoria in Object.keys(locals.mensajes)
@@ -22,7 +19,7 @@ html(lang="en")
                     input(type="text" name="email" placeholder="Tu Email" value= email)
                 .campo
                     label(for="password") Password
-                    input(type="text" name="password" placeholder="Tu Password" value= password)
+                    input(type="password" name="password" placeholder="Tu Password" value= password)
                 .campo.enviar
                     input.boton(type="submit" value="Iniciar Session")
                 .campo.acciones
